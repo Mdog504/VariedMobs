@@ -1,0 +1,4 @@
+name: Varied Mobs
+version: '${project.version}'
+main: com.tomhmagic.variedmobs.VariedMobs
+api-version: '1.20'
