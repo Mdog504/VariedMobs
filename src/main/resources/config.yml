@@ -1,0 +1,17 @@
+# VARIED MOBS by Tomhmagic - https://discord.gg/7eUecQ3sBT
+
+main:
+  # ScaleCaps, this is to set a min and max for the random scale, default is min 0.75, max 1.25 as this is more natural.
+  scaleCaps:
+    #Don't set to more than 1.0, our safe checks for blocks set them to 1.0 if they can't scale more than 1.
+    min: 0.75
+    max: 1.25
+  # Debug mode, all scale operations will be logged to console, so only turn this on if you really need to.
+  debugMode: false
+
+# List of Bukkit EnityTypes - https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+scale_blacklist:
+  - ARMOR_STAND #I didn't add ARMOR_STAND to the hard coded blacklist just in case you want to allow it, but it's an annoying one to have scale.
+
+# List of hard coded blacklisted entity types
+# AREA_EFFECT_CLOUD, BLOCK_DISPLAY, BOAT, BREEZE_WIND_CHARGE, CHEST_BOAT, CHEST_MINECART, COMMAND_BLOCK_MINECART, DRAGON_FIREBALL, EGG, END_CRYSTAL, ENDER_DRAGON, ENDER_PEARL, EXPERIENCE_BOTTLE, EXPERIENCE_ORB, EYE_OF_ENDER, FALLING_BLOCK, FIREBALL, FIREWORK_ROCKET, FISHING_BOBBER, FURNACE_MINECART, GLOW_ITEM_FRAME, HOPPER_MINECART, INTERACTION, ITEM, ITEM_DISPLAY, ITEM_FRAME, LEASH_KNOT, LIGHTNING_BOLT, LLAMA_SPIT, MARKER, MINECART, OMINOUS_ITEM_SPAWNER, PAINTING, PLAYER, POTION, SHULKER_BULLET, SMALL_FIREBALL, SNOWBALL, SPAWNER_MINECART, SPECTRAL_ARROW, TEXT_DISPLAY, TNT_MINECART, TRIDENT, UNKNOWN, WIND_CHARGE, WITHER
