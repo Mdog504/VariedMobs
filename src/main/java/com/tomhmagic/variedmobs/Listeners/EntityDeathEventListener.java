@@ -1,7 +1,7 @@
 package com.tomhmagic.variedmobs.Listeners;
 
-import com.tomhmagic.variedmobs.EntityDenyList;
 import com.tomhmagic.variedmobs.Utils.EntityUtils;
+import com.tomhmagic.variedmobs.Utils.canEntityScale;
 import com.tomhmagic.variedmobs.VariedMobs;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -12,13 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 
 import java.util.List;
-import java.util.Objects;
 
 public class EntityDeathEventListener implements Listener {
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntity() instanceof Player) return;
-        if (EntityDenyList.isEntityInDenyList(event.getEntity())) return;
+        if (!canEntityScale.isAllowed(event.getEntity().getType(), event.getEntity().getWorld())) return;
 
         LivingEntity entity = event.getEntity();
         List<ItemStack> drops = event.getDrops();

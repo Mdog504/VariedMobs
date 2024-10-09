@@ -1,6 +1,6 @@
 package com.tomhmagic.variedmobs.Listeners;
 
-import com.tomhmagic.variedmobs.EntityDenyList;
+import com.tomhmagic.variedmobs.Utils.canEntityScale;
 import com.tomhmagic.variedmobs.Utils.EntityUtils;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
@@ -16,7 +16,7 @@ public class EntityTransformEventListener implements Listener {
     public void onEntityTransform(EntityTransformEvent event) {
         if(event.isCancelled()) return;
         if (event.getEntity() instanceof Player) return;
-        if (EntityDenyList.isEntityInDenyList((LivingEntity) event.getEntity())) {return;}
+        if (!canEntityScale.isAllowed(event.getEntity().getType(), event.getEntity().getWorld())) return;
 
         if (!(event.getEntity() instanceof LivingEntity)) return;
         LivingEntity oldEntity = (LivingEntity) event.getTransformedEntity();

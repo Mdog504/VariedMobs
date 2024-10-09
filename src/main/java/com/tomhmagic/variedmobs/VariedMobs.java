@@ -6,14 +6,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-
 public final class VariedMobs extends JavaPlugin {
 
     private static VariedMobs plugin;
-    private static VariedMobs instance;
 
-    public static final String prefix = ChatColor.WHITE + "[" + ChatColor.GOLD + "VariedMobs" + ChatColor.WHITE + "]";
+    // The below is unused, but commented out in case it is needed in future development
+//    public static final String prefix = ChatColor.WHITE + "[" + ChatColor.GOLD + "VariedMobs" + ChatColor.WHITE + "]";
 
     public VariedMobs() {
         plugin = this;
@@ -22,37 +20,11 @@ public final class VariedMobs extends JavaPlugin {
         return plugin;
     }
 
-    public String getVersion() {
-        return this.getDescription().getVersion();
-    }
-    public static VariedMobs getInstance()
-    {
-        return instance;
-    }
-
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        loadConfig();
-        registerListeners();
-        EntityDenyList.initialize();
-        printArt();
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
-    private void loadConfig(){
-        createPluginFolder();
         this.saveDefaultConfig();
-    }
-
-    public void createPluginFolder(){
-        File f = new File(this.getDataFolder() + "/");
-        if(!f.exists())
-            f.mkdir();
+        registerListeners();
+        printArt();
     }
 
     private void registerListeners(){
@@ -62,6 +34,7 @@ public final class VariedMobs extends JavaPlugin {
         pm.registerEvents(new EntityDeathEventListener(), this);
         pm.registerEvents(new EntityTransformEventListener(), this);
         pm.registerEvents(new EntityPickupItemEventListener(), this);
+        pm.registerEvents(new ChunkLoadEventListener(), this);
     }
 
     private void printArt() {
@@ -73,7 +46,8 @@ public final class VariedMobs extends JavaPlugin {
 
     public static void debug(String msg){
         if(Settings.getDebugMode()){
-            System.out.println("[DEBUG] " + msg);
+            // Better to use the logger for debugging else the server complains
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "[DEBUG] " + ChatColor.GRAY + msg);
         }
     }
 }
